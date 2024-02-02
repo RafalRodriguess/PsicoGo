@@ -18,6 +18,11 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de dese
 
    ```bash
    git clone https://seu-repositorio.git
+
+   1. **Instalar dependencias:**
+
+   ```bash
+   composer install
 Instalar Dependências do Composer:
 
 composer install
