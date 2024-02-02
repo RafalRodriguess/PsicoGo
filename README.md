@@ -20,9 +20,8 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente de dese
    git clone https://seu-repositorio.git
 Instalar Dependências do Composer:
 
-bash
-Copy code
 composer install
+
 Copiar o Arquivo de Configuração:
 
 bash
