@@ -3022,6 +3022,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 /* harmony import */ var _login_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login.js */ "./resources/js/login.js");
 /* harmony import */ var _login_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_login_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _template_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./template.js */ "./resources/js/template.js");
+/* harmony import */ var _template_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_template_js__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
@@ -3088,6 +3091,35 @@ signUpButton.addEventListener('click', function () {
 signInButton.addEventListener('click', function () {
   container.classList.remove("right-panel-active");
 });
+
+/***/ }),
+
+/***/ "./resources/js/template.js":
+/*!**********************************!*\
+  !*** ./resources/js/template.js ***!
+  \**********************************/
+/***/ (() => {
+
+// add hovered class to selected list item
+var list = document.querySelectorAll(".navigation li");
+function activeLink() {
+  list.forEach(function (item) {
+    item.classList.remove("hovered");
+  });
+  this.classList.add("hovered");
+}
+list.forEach(function (item) {
+  return item.addEventListener("mouseover", activeLink);
+});
+
+// Menu Toggle
+var toggle = document.querySelector(".toggle");
+var navigation = document.querySelector(".navigation");
+var main = document.querySelector(".main");
+toggle.onclick = function () {
+  navigation.classList.toggle("active");
+  main.classList.toggle("active");
+};
 
 /***/ }),
 
@@ -9650,6 +9682,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/css/login.css":
+/*!*********************************!*\
+  !*** ./resources/css/login.css ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/axios/lib/adapters/adapters.js":
 /*!*****************************************************!*\
   !*** ./node_modules/axios/lib/adapters/adapters.js ***!
@@ -13930,7 +13975,8 @@ const isThenable = (thing) =>
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
-/******/ 			"css/app": 0
+/******/ 			"css/app": 0,
+/******/ 			"css/login": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -13980,8 +14026,9 @@ const isThenable = (thing) =>
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/login"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/login"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/login"], () => (__webpack_require__("./resources/css/login.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
