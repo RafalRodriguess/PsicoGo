@@ -1,4 +1,10 @@
 <div class="userbar">
+    <div class="topbar">
+        <div class="toggle" onclick="toggleNavigation()">
+            <ion-icon name="menu-outline"></ion-icon>
+        </div>
+    </div>
+
     <div class="user-dropdown">
         <div class="user">
             <img src="{{ asset('img/avatar.jpg') }}" alt="">

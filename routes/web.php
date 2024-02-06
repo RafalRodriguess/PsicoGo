@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PacienteController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,9 +31,11 @@ Route::get('/admins/create', 'AdminController@create')->name('admins.create');
 Route::post('/admins/store', 'AdminController@store')->name('admins.store');
 
 // Pacientes
+
 Route::get('/pacientes', [PacienteController::class, 'index'])->name('pacientes.index');
-
-// Rota para mostrar detalhes de um paciente específico
+Route::get('/pacientes/create', [PacienteController::class, 'create'])->name('pacientes.create');
+Route::post('/pacientes', [PacienteController::class, 'store'])->name('pacientes.store');
 Route::get('/pacientes/{paciente}', [PacienteController::class, 'show'])->name('pacientes.show');
-
+Route::get('/pacientes/{paciente}', [PacienteController::class, 'edit'])->name('pacientes.edit');
+Route::resource('pacientes', PacienteController::class);
 Auth::routes();

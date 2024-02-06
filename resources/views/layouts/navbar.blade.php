@@ -3,17 +3,26 @@
         <ul>
             <div class="logo-container" style="display: flex; align-items: center; margin-bottom: 10px;">
                 <li>
-                    <a href="#">
+                    <a href="{{ url('home') }}">
                         <span class="icon" style="margin-right: 30px;">
                             <!-- Certifique-se de que o caminho está correto e ajuste conforme necessário -->
                             <img src="{{ asset('img/logo2.png') }}" alt="Logo" style="width: 200px; margin-top: -50px;">
                         </span>
                     </a>
                 </li>
+                
             </div>
 
             <div class="separator" style="margin-bottom: 20px;"></div>
 
+            <li>
+                <a href="{{ route('home')}}">
+                    <span class="icon">
+                        <ion-icon name="grid-sharp"></ion-icon>
+                    </span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>
             <li>
                 <a href="{{ route('pacientes.index')}}">
                     <span class="icon">

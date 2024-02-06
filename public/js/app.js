@@ -3100,19 +3100,6 @@ signInButton.addEventListener('click', function () {
   \**********************************/
 /***/ (() => {
 
-// add hovered class to selected list item
-var list = document.querySelectorAll(".navigation li");
-function activeLink() {
-  list.forEach(function (item) {
-    item.classList.remove("hovered");
-  });
-  this.classList.add("hovered");
-}
-list.forEach(function (item) {
-  return item.addEventListener("mouseover", activeLink);
-});
-
-// Menu Toggle
 var toggle = document.querySelector(".toggle");
 var navigation = document.querySelector(".navigation");
 var main = document.querySelector(".main");
@@ -3120,6 +3107,10 @@ toggle.onclick = function () {
   navigation.classList.toggle("active");
   main.classList.toggle("active");
 };
+function toggleNavigation() {
+  var navigation = document.querySelector('.navigation');
+  navigation.style.display = navigation.style.display === 'none' || navigation.style.display === '' ? 'block' : 'none';
+}
 
 /***/ }),
 

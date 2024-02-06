@@ -6,8 +6,8 @@
         <div class="cardBox">
             <div class="card">
                 <div>
-                    <div class="numbers">1,504</div>
-                    <div class="cardName">Consultas Agendadas</div>
+                    <div class="numbers">{{ count($pacientes) }}</div>
+                    <div class="cardName">Pacientes</div>
                 </div>
 
                 <div class="iconBx">
@@ -102,59 +102,26 @@
                 </table>
             </div>
 
-            <!-- ================= Pacientes Recentes ================ -->
+            <!-- ================= Pacientes Recentes ================ 
+            <div class="details">
             <div class="recentCustomers">
                 <div class="cardHeader">
                     <h2>Pacientes Recentes</h2>
-                </div>
-
+                </div>    
                 <table>
-                    <tr>
-                        <td width="60px">
-                            <div class="imgBx"><img src="{{ asset('img/avatar.jpg') }}" alt=""></div>
-                        </td>
-                        <td>
-                            <h4>David<br> <span>Rodrigues</span></h4>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td width="60px">
-                            <div class="imgBx"><img src="{{ asset('img/avatar.jpg') }}" alt=""></div>
-                        </td>
-                        <td>
-                            <h4>Pablo<br> <span>Gabriel</span></h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="60px">
-                            <div class="imgBx"><img src="{{ asset('img/avatar.jpg') }}" alt=""></div>
-                        </td>
-                        <td>
-                            <h4>Amit <br> <span>Índia</span></h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="60px">
-                            <div class="imgBx"><img src="{{ asset('img/avatar.jpg') }}" alt=""></div>
-                        </td>
-                        <td>
-                            <h4>Amit <br> <span>Índia</span></h4>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="60px">
-                            <div class="imgBx"><img src="{{ asset('img/avatar.jpg') }}" alt=""></div>
-                        </td>
-                        <td>
-                            <h4>Amit <br> <span>Índia</span></h4>
-                        </td>
-                    </tr>
-
-                    <!-- ... Outros pacientes ... -->
-
+                    @foreach ($pacientes as $paciente)
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBx"><img src="{{ asset('img/avatar.jpg') }}" alt=""></div>
+                            </td>
+                            <td>
+                                <h4>{{ $paciente->nome }}<br> <span>{{ $paciente->telefone }}</span></h4>
+                            </td>
+                        </tr>
+                    @endforeach
                 </table>
             </div>
-        </div>
+            
+        </div> -->
     </div>
 @endsection

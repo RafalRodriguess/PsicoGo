@@ -30,6 +30,8 @@ body {
 /* =============== Navigation ================ */
 .navigation {
   position: fixed;
+  top: 0;
+  left: 0;
   width: 300px;
   height: 100%;
   background: var(--blue);
@@ -37,6 +39,8 @@ body {
   transition: 0.5s;
   overflow: hidden;
 }
+
+/* Adicione uma classe para ajustar o conteúdo da navbar quando estiver ativa */
 .navigation.active {
   width: 80px;
 }
@@ -101,6 +105,10 @@ body {
   white-space: nowrap;
 }
 
+.content-wrapper {
+  margin-top: 0px; 
+}
+
 /* --------- curve outside ---------- */
 .navigation ul li:hover a::before,
 .navigation ul li.hovered a::before {
@@ -132,18 +140,25 @@ body {
 /* ===================== Main ===================== */
 .main {
   position: absolute;
+  top: 60px; /* Ajuste conforme necessário para deixar espaço para a topbar */
   width: calc(100% - 300px);
   left: 300px;
-  min-height: 100vh;
+  bottom: 0;
   background: var(--white);
   transition: 0.5s;
+  overflow-y: auto; /* Adicione esta propriedade para permitir rolagem vertical quando necessário */
+  overflow-x: hidden; /* Remova a barra de rolagem horizontal */
+  max-height: calc(100vh - 60px); /* Ajuste conforme necessário para evitar sobreposição à userbar */
 }
+
 .main.active {
   width: calc(100% - 80px);
   left: 80px;
+  max-height: calc(100vh - 60px); /* Ajuste conforme necessário para evitar sobreposição à userbar */
 }
 
 .topbar {
+  position: relative;
   width: 100%;
   height: 60px;
   display: flex;
@@ -153,7 +168,9 @@ body {
 }
 
 .toggle {
-  position: relative;
+  transition: transform 0.5s;
+  margin-left: 280px;
+  position: absolute;
   width: 60px;
   height: 60px;
   display: flex;
@@ -162,7 +179,32 @@ body {
   font-size: 2.5rem;
   cursor: pointer;
 }
+.toggle-icon {
+  display: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+/* Estilos responsivos */
+@media screen and (max-width: 992px) {
+  .toggle {
+    display: none;
+  }
 
+  .toggle-icon {
+    display: flex;
+  }
+
+  .navigation {
+    display: none; /* Inicialmente escondida em telas menores */
+  }
+
+  .active {
+    transform: translateX(300px);
+  }
+}
+.topbar.navbar-hidden {
+  transform: translateX(-225px); /* Ajuste o valor conforme necessário para acompanhar a largura da navigation */
+}
 .search {
   position: relative;
   width: 400px;
@@ -213,15 +255,20 @@ body {
 
 /* ======================= Cards ====================== */
 .cardBox {
+  margin: 30px;
   position: relative;
-  width: 100%;
+  width: calc(100% - 60px);
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 30px;
+  background: var(--white);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
 }
 
 .cardBox .card {
+  margin: 20px;
   position: relative;
   background: var(--white);
   padding: 30px;
@@ -260,19 +307,37 @@ body {
 }
 
 /* ================== Order Details List ============== */
-.details {
+.detailscard {
   position: relative;
-  width: 100%;
-  padding: 20px;
+  width: calc(100% - 40px); /* Largura total - 2 * margem */
+  margin: 20px; /* Adicione uma margem de 20px em todos os lados */
   display: grid;
   grid-template-columns: 2fr 1fr;
   grid-gap: 30px;
-  /* margin-top: 10px; */
+}
+
+.details {
+    position: relative;
+    width: calc(100% - 40px);
+    margin: 20px;
+}
+
+
+.detailscard .recentOrders {
+  position: relative;
+  width: calc(100% - 60px); /* Subtrai 60px para acomodar a margem ao redor (30px de cada lado) */
+  margin: 30px;
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
 }
 
 .details .recentOrders {
   position: relative;
-  display: grid;
+  width: calc(100% - 60px); /* Subtrai 60px para acomodar a margem ao redor (30px de cada lado) */
+  margin: 30px;
   min-height: 500px;
   background: var(--white);
   padding: 20px;
@@ -286,6 +351,10 @@ body {
   align-items: flex-start;
 }
 .cardHeader h2 {
+  font-weight: 600;
+  color: var(--blue);
+}
+.cardHeader h3 {
   font-weight: 600;
   color: var(--blue);
 }
@@ -409,11 +478,15 @@ body {
 
 /* Userbar */
 .userbar {
-  background-color: var(--blue);
-  color: #fff;
+  margin-bottom: 20px;
+  color: var(--blue);
+  position: fixed;
   padding: 10px;
   display: flex;
   justify-content: flex-end;
+  top: 0;
+  width: 100%;
+  z-index: 3; /* Ajuste o z-index conforme necessário para garantir que a userbar esteja sobre outros elementos */
 }
 
 .user-dropdown {
@@ -452,22 +525,49 @@ body {
 .user-dropdown:hover .dropdown-content {
   display: block;
 }
-
 /* Estilo adicional para tornar o dropdown responsivo */
 @media screen and (max-width: 600px) {
   .user-dropdown {
-      display: block; /* Altera para um bloco empilhado em telas menores */
+    display: block; /* Altera para um bloco empilhado em telas menores */
   }
 
   .dropdown-content {
-      position: static; /* Remove a posição absoluta para empilhar corretamente */
-      width: 100%; /* Ocupa a largura total */
-      box-shadow: none; /* Remove a sombra, se desejar */
-      top: auto; /* Remove a posição superior */
-      right: 0; /* Alinha à direita */
+    position: static; /* Remove a posição absoluta para empilhar corretamente */
+    width: 100%; /* Ocupa a largura total */
+    box-shadow: none; /* Remove a sombra, se desejar */
+    top: auto; /* Remove a posição superior */
+    right: 0; /* Alinha à direita */
+  }
+}
+@media screen and (max-width: 1300px) {
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas por linha */
+    grid-gap: 20px; /* Espaçamento entre as colunas */
+  }
+}
+/* Adicione essas regras de mídia para tornar a seção responsiva */
+@media screen and (max-width: 1200px) {
+  .cardBox {
+    grid-template-columns: repeat(3, 1fr); /* Altera para 3 colunas em telas menores */
+    grid-gap: 20px; /* Reduz o espaçamento entre as colunas */
+  }
+
+  .cardBox .card {
+    padding: 20px; /* Reduz o preenchimento do card */
   }
 }
 
+@media screen and (max-width: 992px) {
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr); /* Altera para 2 colunas em telas ainda menores */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cardBox {
+    grid-template-columns: 1fr; /* Altera para 1 coluna em telas pequenas */
+  }
+}
 
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
@@ -486,6 +586,7 @@ body {
     left: 300px;
   }
   .cardBox {
+    margin: 20px;
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -504,6 +605,7 @@ body {
 
 @media (max-width: 480px) {
   .cardBox {
+    margin: 20px;
     grid-template-columns: repeat(1, 1fr);
   }
   .cardHeader h2 {
@@ -550,6 +652,7 @@ body {
     left: 300px;
   }
   .cardBox {
+    margin: 20px;
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -586,6 +689,7 @@ body {
 
 @media (max-width: 480px) {
   .cardBox {
+    margin: 20px;
     grid-template-columns: repeat(1, 1fr);
   }
   .cardHeader h2 {
