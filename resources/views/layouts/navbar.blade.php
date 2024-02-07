@@ -33,11 +33,11 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ route('agendamentos.index')}}">
                     <span class="icon">
                         <ion-icon name="time-outline"></ion-icon>
                     </span>
-                    <span class="title">Horários Disponíveis</span>
+                    <span class="title">Agendamentos</span>
                 </a>
             </li>
 

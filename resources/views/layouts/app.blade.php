@@ -53,7 +53,7 @@
     <script src="{{ asset('assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('assets/js/pace.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-
+    @yield('scripts')
     <script>
         function toggleNavbar() {
             var navbar = document.querySelector('.navigation');

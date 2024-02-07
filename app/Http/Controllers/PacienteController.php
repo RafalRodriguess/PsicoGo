@@ -17,9 +17,9 @@ class PacienteController extends Controller
 
     public function show(Paciente $paciente)
     {
+        $paciente->load('agendamentos'); // Carregar relacionamento agendamentos
         return view('pacientes.show', compact('paciente'));
     }
-
     public function create()
     {
         return view('pacientes.create');
@@ -71,8 +71,13 @@ public function update(Request $request, Paciente $paciente)
 
 public function destroy(Paciente $paciente)
 {
+    // Exclui os agendamentos associados ao paciente
+    $paciente->agendamentos()->delete();
+
+    // Em seguida, exclui o próprio paciente
     $paciente->delete();
 
-    return redirect()->route('pacientes.index')->with('success', 'Paciente excluído com sucesso!');
+    // Redireciona de volta para a página de listagem de pacientes
+    return redirect()->route('pacientes.index')->with('success', 'Paciente excluído com sucesso.');
 }
 }

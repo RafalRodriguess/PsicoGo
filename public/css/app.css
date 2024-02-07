@@ -253,6 +253,13 @@ body {
      object-fit: cover;
 }
 
+.logocontainer{
+  max-width: 20%;
+  height: auto;
+  display: center;
+  margin: 0 auto;
+}
+
 /* ======================= Cards ====================== */
 .cardBox {
   margin: 30px;
